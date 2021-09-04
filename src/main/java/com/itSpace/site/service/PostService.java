@@ -1,12 +1,11 @@
+
 package com.itSpace.site.service;
 
 import com.itSpace.site.model.Post;
 import com.itSpace.site.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,8 +15,8 @@ public class PostService {
 
     private final PostRepository postRepository;
 
-    public List<Post> findAllByEmployee_Company_Id(int id){
-        return postRepository.findAllById(Collections.singleton(id));
+    public List<Post> findAllByCompanyId(int id) {
+        return postRepository.findAllByEmploye_Compani_Id(id);
     }
     public Optional<Post> findPostById(int id){
         return postRepository.findById(id);
@@ -27,4 +26,3 @@ public class PostService {
         postRepository.save(post);
     }
 }
-

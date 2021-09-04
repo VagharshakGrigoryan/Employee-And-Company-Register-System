@@ -6,7 +6,7 @@ import com.itSpace.site.repository.PostRepository;
 import com.itSpace.site.security.CurrentUser;
 import com.itSpace.site.service.CommentService;
 import com.itSpace.site.service.PostService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +18,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+
 @Controller
-@RequiredArgsConstructor
 
 public class BlogController {
 
-    private final PostRepository postRepository;
-    private final PostService postService;
-    private final CommentService commentService;
+    @Autowired
+    private  PostRepository postRepository;
+
+    @Autowired
+
+    private  PostService postService;
+    @Autowired
+
+    private CommentService commentService;
 
     @GetMapping("/blog")
     public String blogMain(ModelMap modelMap, @AuthenticationPrincipal CurrentUser currentUser) {
-        Iterable<Post> posts = postService.findAllByEmployee_Company_Id(currentUser.getemploye().getCompani().getId());
+        Iterable<Post> posts = postService.findAllByCompanyId(currentUser.getemploye().getCompani().getId());
         modelMap.addAttribute("posts", posts);
         return "blog-main";
     }
@@ -42,7 +47,8 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@AuthenticationPrincipal CurrentUser currentUser, @ModelAttribute Post post) {
+    public String blogPostAdd(@AuthenticationPrincipal
+                                      CurrentUser currentUser, @ModelAttribute Post post) {
         post.setCreatedDate(new Date());
         post.setEmploye(currentUser.getemploye());
         postService.savePost(post);
@@ -96,7 +102,6 @@ public class BlogController {
         postRepository.delete(post);
         return "redirect:/blog";
     }
-
 
 }
 

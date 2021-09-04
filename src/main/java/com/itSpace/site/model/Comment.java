@@ -15,15 +15,19 @@ import java.util.Date;
 @Entity
 @Table(name = "comments")
 public class Comment {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String text;
+
     private Date createdDate;
+
     @ManyToOne
     private Employe employe;
+
     @ManyToOne
     private Post post;
-
 
 }

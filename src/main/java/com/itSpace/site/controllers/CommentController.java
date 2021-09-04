@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.Date;
 
-@SuppressWarnings("OptionalGetWithoutIsPresent")
 @Controller
 @RequiredArgsConstructor
 public class CommentController {

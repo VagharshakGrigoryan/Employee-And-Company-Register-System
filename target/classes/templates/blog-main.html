@@ -16,8 +16,6 @@
     <h1>Forums</h1>
     <div th:each="el : ${posts}" class="alert alert-info mt-2">
 
-
-
         <h3 th:text="${el.title}"></h3>
         <p th:text = "${el.createdDate}"></p>
         <a th:href="@{/blog/{id}(id=${el.id})}" class="btn btn-warning">Detals</a>

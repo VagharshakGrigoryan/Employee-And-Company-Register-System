@@ -13,7 +13,7 @@ public class CommentService {
     private final CommentRepository commentRepository;
 
     public List<Comment> getAllCommentsByPostId(int id) {
-        return commentRepository.findAllByEmploye_Compani_Id(id);
+        return commentRepository.findAllByPost_Id(id);
     }
 
     public void saveComment(Comment comment) {
