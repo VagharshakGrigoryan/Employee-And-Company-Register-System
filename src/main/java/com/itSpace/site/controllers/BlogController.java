@@ -42,8 +42,7 @@ public class BlogController {
     }
 
     @PostMapping("/blog/add")
-    public String blogPostAdd(@AuthenticationPrincipal
-       CurrentUser currentUser, @ModelAttribute Post post) {
+    public String blogPostAdd(@AuthenticationPrincipal CurrentUser currentUser, @ModelAttribute Post post) {
         post.setCreatedDate(new Date());
         post.setEmploye(currentUser.getemploye());
         postService.savePost(post);
